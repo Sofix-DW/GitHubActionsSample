@@ -1,10 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="./../../SolutionDefines.targets" />
+  <Import Project="./../../SolutionDefines.ProjectVersion.targets" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>$(DotNetVersion)</TargetFramework>
+    <LangVersion>$(DotNetLangVersion)</LangVersion>
+    <Company>$(CompanyName)</Company>
+    <Authors>$(AuthorsName)</Authors>
+    <Product>$(ProductName)</Product>
+    <Copyright>$(CopyrightValue)</Copyright>
+    <Version>$(ProjectVersion)</Version>
+    <PackageVersion>$(NugetPackageVersion)</PackageVersion>
+    <PackageTags>$(NugetPackageTags)</PackageTags>
+    <Description>$(NugetPackageDescription)</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <NoWarn>NU1603</NoWarn>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(XmlDocumentPath)</DocumentationFile>
   </PropertyGroup>
 
 </Project>

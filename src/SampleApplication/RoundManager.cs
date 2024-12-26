@@ -2,15 +2,26 @@
 
 namespace SampleApplication;
 
+/// <summary>
+/// Class to manage rounds
+/// </summary>
 public class RoundManager
 {
     private List<PlayerInfo> _players;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="players"></param>
     public RoundManager(List<PlayerInfo> players)
     {
         _players = players;
     }
 
+    /// <summary>
+    /// Play a round
+    /// </summary>
+    /// <param name="roundNumber"></param>
     public void PlayRound(int roundNumber)
     {
         // 全プレイヤーがダイスを振る

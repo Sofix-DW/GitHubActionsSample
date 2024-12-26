@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.Test", "test\SampleApplication.Test\SampleApplication.Test.csproj", "{7F94EBE2-81B0-4452-AD23-B892E0849D7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApplication.Test", "test\SampleApplication.Test\SampleApplication.Test.csproj", "{7F94EBE2-81B0-4452-AD23-B892E0849D7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "src\SampleApplication\SampleApplication.csproj", "{76FFB2B5-6FF8-4534-A64E-903744DE8D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApplication", "src\SampleApplication\SampleApplication.csproj", "{76FFB2B5-6FF8-4534-A64E-903744DE8D0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{6A90FD9B-A9E0-47B8-84BA-02692A955EFC}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		SolutionDefines.ProjectVersion.targets = SolutionDefines.ProjectVersion.targets
+		SolutionDefines.targets = SolutionDefines.targets
 	EndProjectSection
 EndProject
 Global
@@ -29,5 +31,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EEF0772-A6A9-453F-B136-432F51F8E22D}
 	EndGlobalSection
 EndGlobal

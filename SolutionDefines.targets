@@ -1,0 +1,30 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.Microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CompanyName>S Fujii</CompanyName>
+    <AuthorsName>S Fujii</AuthorsName>
+    <ProductName>DcRolle</ProductName>
+    <NugetPackageTags>DcRolle</NugetPackageTags>
+    <NugetPackageDescription>C# implementation of dice rolle.</NugetPackageDescription>
+    <LicenseName>LICENSE</LicenseName>
+    <LicensePath>..\..\$(LicenseName)</LicensePath>
+    <XmlDocumentPath>bin\$(Configuration)/$(TargetFramework)/$(MSBuildProjectName).xml</XmlDocumentPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DotNetStandardVersion>netstandard2.1</DotNetStandardVersion>
+    <DotNetVersion>net8.0</DotNetVersion>
+    <DotNetTestVersion>net8.0</DotNetTestVersion>
+    <DotNetLangVersion>12.0</DotNetLangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProtobufVersion>[3.28.*,3.29.0)</ProtobufVersion>
+    <GrpcVersion>[2.66.*,2.67.0)</GrpcVersion>
+    <GrpcToolsVersion>[2.66.*,2.67.0)</GrpcToolsVersion>
+    <MicrosoftNETTestSdkVersion>[17.8.*,17.9.0)</MicrosoftNETTestSdkVersion>
+    <XUnitVersion>[2.6.*,2.7.0)</XUnitVersion>
+    <XUnitRunnerVersion>[2.5.*,2.6.0)</XUnitRunnerVersion>
+    <XunitSkippableFactVersion>1.4.13</XunitSkippableFactVersion>
+    <CoverletCollectorVersion>[6.0.*,6.1.0)</CoverletCollectorVersion>
+    <SystemTextJsonVersion>[8.0.*,8.1.0)</SystemTextJsonVersion>
+    <SystemIOAbstractionsTestingHelpersVersion>[21.0.*,21.1.0)</SystemIOAbstractionsTestingHelpersVersion>
+  </PropertyGroup>
+</Project>

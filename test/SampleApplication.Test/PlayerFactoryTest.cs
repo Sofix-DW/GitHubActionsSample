@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+
 namespace SampleApplication.Test
 {
     public class PlayerFactoryTest
