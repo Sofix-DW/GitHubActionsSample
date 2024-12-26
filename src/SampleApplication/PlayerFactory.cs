@@ -22,7 +22,7 @@ public class PlayerFactory
     /// <summary>
     /// Create a player list
     /// </summary>
-    /// <param name="count"></param>
+    /// <param name="count">Number of players to create</param>
     /// <returns></returns>
     public static List<PlayerInfo> CreatePlayers(int count)
     {
