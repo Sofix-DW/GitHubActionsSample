@@ -12,7 +12,7 @@ public class RoundManager
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="players"></param>
+    /// <param name="players">Join player list</param>
     public RoundManager(List<PlayerInfo> players)
     {
         _players = players;
