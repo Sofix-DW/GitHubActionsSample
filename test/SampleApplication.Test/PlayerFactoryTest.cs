@@ -5,7 +5,7 @@ namespace SampleApplication.Test
 {
     public class PlayerFactoryTest
     {
-        [Fact(DisplayName = "FactoryƒeƒXƒg")]
+        [Fact(DisplayName = "Factory Test")]
         public void CreatePlayers_ShouldReturnCorrectNumberOfPlayers()
         {
             var name1 = "Hoge1";
@@ -19,10 +19,10 @@ namespace SampleApplication.Test
             var players = PlayerFactory.CreatePlayers(3);
 
             // Assert
-            Assert.Equal(3, players.Count); // ƒvƒŒƒCƒ„[”‚ª³‚µ‚¢‚©
-            Assert.Equal(name1, players[0].Name); // ƒvƒŒƒCƒ„[1‚Ì–¼‘O‚ğŠm”F
-            Assert.Equal(name2, players[1].Name); // ƒvƒŒƒCƒ„[2‚Ì–¼‘O‚ğŠm”F
-            Assert.Equal(name3, players[2].Name); // ƒvƒŒƒCƒ„[3‚Ì–¼‘O‚ğŠm”F
+            Assert.Equal(3, players.Count); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°ãŒæ­£ã—ã„ã‹
+            Assert.Equal(name1, players[0].Name); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼1ã®åå‰ã‚’ç¢ºèª
+            Assert.Equal(name2, players[1].Name); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼2ã®åå‰ã‚’ç¢ºèª
+            Assert.Equal(name3, players[2].Name); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼3ã®åå‰ã‚’ç¢ºèª
         }
     }
 }
