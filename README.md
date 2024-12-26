@@ -1,2 +1,2 @@
 # GitHubActionsSample
-Git Hub Actionsの操作や動作確認用のリポジトリです。
+This is a repository for operating and checking the operation of Git Hub Actions.
