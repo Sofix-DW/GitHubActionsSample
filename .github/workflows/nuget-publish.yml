@@ -112,15 +112,12 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: build-output
-      - name: Debug Token
-        run: echo "${{ steps.app-token.outputs.token }}"
       - name: Commit and push changes
         id: git_push
         run: |
           set -e
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git remote set-url origin https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ github.repository }}
           git add ${{ env.VERSION_FILE }}
           git commit -m "Update project version"
           if git push; then
