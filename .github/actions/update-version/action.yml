@@ -13,9 +13,6 @@ inputs:
     description: 'Path to the version file'
     required: true
     type: string
-outputs:
-  TARGET_PROJECT_VERSION: ${{ steps.update_version.outputs.TARGET_NUGET_VERSION }}
-  TARGET_NUGET_VERSION: ${{ steps.update_version.outputs.TARGET_NUGET_VERSION }}
 
 runs:
   using: "composite"
