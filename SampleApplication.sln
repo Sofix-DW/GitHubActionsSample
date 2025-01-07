@@ -14,6 +14,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 		SolutionDefines.targets = SolutionDefines.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_deploy", "_deploy", "{2053BA25-3D77-45C9-82B3-71D2387AF4B4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet-ci-cd.yml = .github\workflows\dotnet-ci-cd.yml
+		.github\workflows\nuget-publish.yml = .github\workflows\nuget-publish.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "actions", "actions", "{923A4133-09F3-4DFE-B0F5-B77C7424355C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "update-version", "update-version", "{75801F20-5BF1-4485-86B2-54054D2D8F1E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actions\update-version\action.yml = .github\actions\update-version\action.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "release-tag", "release-tag", "{B04E814B-C61E-4949-98D7-3F0880DBF1D8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actions\release_tag\action.yml = .github\actions\release_tag\action.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +49,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{923A4133-09F3-4DFE-B0F5-B77C7424355C} = {2053BA25-3D77-45C9-82B3-71D2387AF4B4}
+		{75801F20-5BF1-4485-86B2-54054D2D8F1E} = {923A4133-09F3-4DFE-B0F5-B77C7424355C}
+		{B04E814B-C61E-4949-98D7-3F0880DBF1D8} = {923A4133-09F3-4DFE-B0F5-B77C7424355C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9EEF0772-A6A9-453F-B136-432F51F8E22D}
