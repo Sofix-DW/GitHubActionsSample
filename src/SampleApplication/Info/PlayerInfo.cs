@@ -8,7 +8,7 @@ public class PlayerInfo
     private readonly Random _random;
 
     /// <summary>
-    /// Playser name
+    /// Player name
     /// </summary>
     public string Name { get; private set; }
     /// <summary>
