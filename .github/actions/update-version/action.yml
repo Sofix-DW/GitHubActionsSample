@@ -69,3 +69,7 @@ runs:
         sed -i "s/<ProjectVersion>.*<\/ProjectVersion>/<ProjectVersion>${TARGET_PROJECT_VERSION}<\/ProjectVersion>/" ${{ inputs.version_file }}
         sed -i "s/<NugetPackageVersion>.*<\/NugetPackageVersion>/<NugetPackageVersion>${TARGET_NUGET_VERSION}<\/NugetPackageVersion>/" ${{ inputs.version_file }}
         cat ${{ inputs.version_file }}
+
+    outputs:
+      TARGET_PROJECT_VERSION: ${{ steps.update_version.outputs.TARGET_NUGET_VERSION }}
+      TARGET_NUGET_VERSION: ${{ steps.update_version.outputs.TARGET_NUGET_VERSION }}
