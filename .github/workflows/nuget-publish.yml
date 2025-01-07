@@ -133,7 +133,7 @@ jobs:
         if: env.push_success == 'true'
         run: |
           # Extract NugetPackageVersion from the XML file
-          VERSION=${{ needs.build.outputs.TARGET_NUGET_VERSION }}
+          VERSION=$(sed -n 's|.*<NugetPackageVersion>\(.*\)</NugetPackageVersion>.*|\1|p' ${{ env.VERSION_FILE }})
 
           # Ensure VERSION is not empty
           if [ -z "$VERSION" ]; then
