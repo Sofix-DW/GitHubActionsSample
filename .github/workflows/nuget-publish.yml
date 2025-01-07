@@ -135,9 +135,17 @@ jobs:
           # Get the new version from the updated file
           VERSION=$(cat ${{ env.VERSION_FILE }})
           TAG="v$VERSION"
+          
+          echo "Creating tag: $TAG"
+
+          # Ensure the tag value is not empty
+          if [ -z "$TAG" ]; then
+            echo "Error: TAG is empty. Exiting."
+            exit 1
+          fi
 
           # Create and push the new tag
-          git tag $TAG
-          git push origin $TAG
+          git tag "$TAG"
+          git push origin "$TAG"
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
