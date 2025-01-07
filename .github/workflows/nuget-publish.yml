@@ -129,3 +129,15 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      - name: Create and Push Tag
+        if: env.push_success == 'true'
+        run: |
+          # Get the new version from the updated file
+          VERSION=$(cat ${{ env.VERSION_FILE }})
+          TAG="v$VERSION"
+
+          # Create and push the new tag
+          git tag $TAG
+          git push origin $TAG
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
