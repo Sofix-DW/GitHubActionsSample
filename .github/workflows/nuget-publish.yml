@@ -173,6 +173,18 @@ jobs:
           # Export the latest tag as an output
           echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
 
+      - name: Check if Tag is Stable
+        id: check_stable
+        run: |
+          # Check if the tag name contains "beta" or "alpha"
+          if [[ "${{ env.latest_tag }}" =~ (beta|alpha) ]]; then
+            echo "is_stable=false" >> $GITHUB_ENV
+            echo "Detected pre-release tag: ${{ env.latest_tag }}"
+          else
+            echo "is_stable=true" >> $GITHUB_ENV
+            echo "Detected stable tag: ${{ env.latest_tag }}"
+          fi
+
       - name: Generate Release Notes and Create Release
         if: env.is_stable == 'true'
         uses: actions/github-script@v6
@@ -205,4 +217,4 @@ jobs:
 
             console.log(`Release created: ${release.data.html_url}`);
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
