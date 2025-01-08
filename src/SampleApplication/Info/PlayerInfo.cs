@@ -3,14 +3,14 @@
 /// <summary>
 /// Player information class
 /// </summary>
-public class PlayerInfo
+public class PlayerInfo(string name)
 {
-    private readonly Random _random;
+    private readonly Random _random = new();
 
     /// <summary>
     /// Player name
     /// </summary>
-    public string Name { get; private set; }
+    public string Name { get; private set; } = name;
     /// <summary>
     /// Dice Roll Results
     /// </summary>
@@ -19,16 +19,6 @@ public class PlayerInfo
     /// Total score
     /// </summary>
     public int TotalScore { get; private set; }
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="name"></param>
-    public PlayerInfo(string name)
-    {
-        Name = name;
-        _random = new Random();
-    }
 
     /// <summary>
     /// Roll the dice

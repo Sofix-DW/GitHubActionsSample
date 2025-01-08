@@ -26,7 +26,7 @@ public class PlayerFactory
     /// <returns></returns>
     public static List<PlayerInfo> CreatePlayers(int count)
     {
-        List<PlayerInfo> players = new List<PlayerInfo>();
+        List<PlayerInfo> players = [];
 
         for (int i = 1; i <= count; i++)
         {
