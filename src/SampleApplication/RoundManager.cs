@@ -5,18 +5,13 @@ namespace SampleApplication;
 /// <summary>
 /// Class to manage rounds
 /// </summary>
-public class RoundManager
+/// <remarks>
+/// Constructor
+/// </remarks>
+/// <param name="players">Join player list</param>
+public class RoundManager(List<PlayerInfo> players)
 {
-    private List<PlayerInfo> _players;
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="players">Join player list</param>
-    public RoundManager(List<PlayerInfo> players)
-    {
-        _players = players;
-    }
+    private readonly List<PlayerInfo> _players = players;
 
     /// <summary>
     /// Play a round
@@ -25,17 +20,17 @@ public class RoundManager
     public void PlayRound(int roundNumber)
     {
         // 全プレイヤーがダイスを振る
-        foreach (var player in _players)
+        foreach (PlayerInfo player in _players)
         {
             player.RollDice();
             Console.WriteLine($"{player.Name}のロール: {player.Score}");
         }
 
         // ラウンド勝者を決定
-        var maxScore = -1;
-        var roundWinners = new List<PlayerInfo>();
+        int maxScore = -1;
+        List<PlayerInfo> roundWinners = new List<PlayerInfo>();
 
-        foreach (var player in _players)
+        foreach (PlayerInfo player in _players)
         {
             if (player.Score > maxScore)
             {
