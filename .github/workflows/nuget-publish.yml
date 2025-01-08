@@ -153,29 +153,55 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
-      # Conditional: Create GitHub Release only for stable versions
+      - name: Get Latest Tag
+        id: get_latest_tag
+        run: |
+          # Fetch all tags
+          git fetch --tags
+          
+          # Get the latest tag by creation date
+          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+        
+          # Ensure the latest tag is not empty
+          if [ -z "$LATEST_TAG" ]; then
+            echo "Error: No tags found."
+            exit 1
+          fi
+        
+          echo "Latest tag: $LATEST_TAG"
+        
+          # Export the latest tag as an output
+          echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
+
+      - name: Debug Latest Tag
+        run: |
+            echo "Latest tag is: ${{ env.latest_tag }}"
+
       - name: Check if Tag is Stable
         id: check_stable
         run: |
-          echo "Generated tag: ${{ env.tag }}"
-
-          if [[ "${{ env.tag }}" =~ ^v[0-9]+(\.[0-9]+){0,2}$ ]]; then
-            echo "is_stable=true" >> $GITHUB_ENV
-          else
+          # Check if the tag name contains "beta" or "alpha"
+          if [[ "${{ env.latest_tag }}" =~ (beta|alpha) ]]; then
             echo "is_stable=false" >> $GITHUB_ENV
+            echo "Detected pre-release tag: ${{ env.latest_tag }}"
+          else
+            echo "is_stable=true" >> $GITHUB_ENV
+            echo "Detected stable tag: ${{ env.latest_tag }}"
           fi
 
+      - name: Debug Stability Check
+        run: |
+          echo "Is Stable: ${{ env.is_stable }}"
       - name: Create GitHub Release
         if: env.is_stable == 'true'
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ env.tag }}
-          release_name: "Release ${{ env.tag }}"
+          tag_name: ${{ env.latest_tag }}
+          release_name: "Release ${{ env.latest_tag }}"
           body: |
             # Release Notes
-            This release includes the following changes:
-            - Feature 1
-            - Bugfix 2
+            This release is based on tag: ${{ env.latest_tag }}
+            Please refer to the change log for details.
           draft: false
           prerelease: false
         env:
