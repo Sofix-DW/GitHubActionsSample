@@ -13,7 +13,11 @@ on:
       prerelease:
         description: 'PreRelease identifier (e.g. rc, alpha, beta)'
         required: false
-        type: string
+        type: choice
+        options:
+          - 'rc'
+          - 'alpha'
+          - 'beta'
         default: 'rc'
       configuration:
         description: 'configuration'
