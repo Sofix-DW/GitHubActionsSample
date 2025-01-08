@@ -173,36 +173,36 @@ jobs:
           # Export the latest tag as an output
           echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
 
-      - name: Debug Latest Tag
-        run: |
-            echo "Latest tag is: ${{ env.latest_tag }}"
-
-      - name: Check if Tag is Stable
-        id: check_stable
-        run: |
-          # Check if the tag name contains "beta" or "alpha"
-          if [[ "${{ env.latest_tag }}" =~ (beta|alpha) ]]; then
-            echo "is_stable=false" >> $GITHUB_ENV
-            echo "Detected pre-release tag: ${{ env.latest_tag }}"
-          else
-            echo "is_stable=true" >> $GITHUB_ENV
-            echo "Detected stable tag: ${{ env.latest_tag }}"
-          fi
-
-      - name: Debug Stability Check
-        run: |
-          echo "Is Stable: ${{ env.is_stable }}"
-      - name: Create GitHub Release
+      - name: Generate Release Notes and Create Release
         if: env.is_stable == 'true'
-        uses: actions/create-release@v1
+        uses: actions/github-script@v6
         with:
-          tag_name: ${{ env.latest_tag }}
-          release_name: "Release ${{ env.latest_tag }}"
-          body: |
-            # Release Notes
-            This release is based on tag: ${{ env.latest_tag }}
-            Please refer to the change log for details.
-          draft: false
-          prerelease: false
+          script: |
+            const latestTag = process.env.latest_tag;
+            const previousTag = await github.repos.listTags({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 2
+            }).then(res => res.data[1]?.name); // Get the second most recent tag
+          
+            const releaseNotes = await github.repos.generateReleaseNotes({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: latestTag,
+              target_commitish: 'main', // Adjust branch if necessary
+              previous_tag_name: previousTag
+            });
+
+            const release = await github.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: latestTag,
+              name: `Release ${latestTag}`,
+              body: releaseNotes.body,
+              draft: false,
+              prerelease: false
+            });
+
+            console.log(`Release created: ${release.data.html_url}`);
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
