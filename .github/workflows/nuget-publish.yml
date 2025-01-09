@@ -117,7 +117,6 @@ jobs:
         with:
           name: build-output
       - name: Create and Push Tag
-        if: env.push_success == 'true'
         run: |
           VERSION=$(sed -n 's|.*<NugetPackageVersion>\(.*\)</NugetPackageVersion>.*|\1|p' ${{ env.VERSION_FILE }})
           
