@@ -181,7 +181,7 @@ jobs:
                   target_commitish: 'main',
                   previous_tag_name: previousTag
                 })
-              : { data.body: "Initial release." };
+              : { data: { body: "Initial release." } };
 
             const release = await github.rest.repos.createRelease({
               owner: context.repo.owner,
