@@ -172,7 +172,7 @@ jobs:
       - name: Check if Tag is Stable
         id: check_stable
         run: |
-          if [[ "${{ env.previous_tag }}" =~ (beta|alpha|rc) ]]; then
+          if [[ "${{ process.env.TAG_NAME }}" =~ (beta|alpha|rc) ]]; then
             echo "is_stable=false" >> $GITHUB_ENV
             echo "Detected pre-release tag: ${{ env.previous_tag }}"
           else
