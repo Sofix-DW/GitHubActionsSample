@@ -191,12 +191,17 @@ jobs:
         with:
           script: |
             const latestTag = process.env.latest_tag;
-            const previousTag = await github.repos.listTags({
+            const tagsResponse = await github.repos.listTags({
               owner: context.repo.owner,
               repo: context.repo.repo,
               per_page: 2
-            }).then(res => res.data[1]?.name); // Get the second most recent tag
+            });
+            
+            const previousTag = tagsResponse.data[1]?.name; // Get the second most recent tag
           
+            console.log("Tags Response:", tagsResponse);
+            console.log("Previous Tag:", previousTag);
+
             const releaseNotes = await github.repos.generateReleaseNotes({
               owner: context.repo.owner,
               repo: context.repo.repo,
