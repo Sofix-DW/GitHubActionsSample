@@ -134,23 +134,19 @@ jobs:
       - name: Create and Push Tag
         if: env.push_success == 'true'
         run: |
-          // Extract NugetPackageVersion from the XML file
           VERSION=$(sed -n 's|.*<NugetPackageVersion>\(.*\)</NugetPackageVersion>.*|\1|p' ${{ env.VERSION_FILE }})
-
-          // Ensure VERSION is not empty
+          
           if [ -z "$VERSION" ]; then
             echo "Error: NugetPackageVersion is empty. Exiting."
             exit 1
           fi
           
-          // Create the tag with the version
           TAG="v$VERSION"
           echo "Creating tag: $TAG"
-
-          // Create and push the new tag
+          
           git tag "$TAG"
           git push origin "$TAG"
-          // Export the tag name
+
           echo "TAG_NAME=$TAG" >> $GITHUB_ENV
 
         env:
@@ -159,13 +155,10 @@ jobs:
       - name: Get Previous Tag
         id: get_previous_tag
         run: |
-          // Fetch all tags
           git fetch --tags
           
-          // Get the latest tag by creation date
           PREVIOUS_TAG=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=2) | tail -n 1)
-
-          // Export the latest tag as an output
+          
           if [ -z "$PREVIOUS_TAG" ]; then
             echo "No previous tag found. This will be the first release."
             echo "PREVIOUS_TAG=" >> $GITHUB_ENV
@@ -177,8 +170,7 @@ jobs:
       - name: Check if Tag is Stable
         id: check_stable
         run: |
-          // Check if the tag name contains "beta" or "alpha"
-          if [[ "${{ env.previous_tag }}" =~ (beta|alpha) ]]; then
+          if [[ "${{ env.previous_tag }}" =~ (beta|alpha|rc) ]]; then
             echo "is_stable=false" >> $GITHUB_ENV
             echo "Detected pre-release tag: ${{ env.previous_tag }}"
           else
@@ -193,12 +185,10 @@ jobs:
           script: |
             const latestTag = process.env.TAG_NAME;
             const previousTag = process.env.PREVIOUS_TAG || null;
-
-            // Log the tags being used
+            
             console.log(`Latest Tag: ${latestTag}`);
             console.log(`Previous Tag: ${previousTag}`);
-
-            // Generate release notes
+            
             const releaseNotes = previousTag
               ? await github.rest.repos.generateReleaseNotes({
                   owner: context.repo.owner,
@@ -207,9 +197,8 @@ jobs:
                   target_commitish: 'main',
                   previous_tag_name: previousTag
                 })
-              : { body: "Initial release." }; // Fallback for the first release
+              : { body: "Initial release." };
           
-            // Create the release
             const release = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
