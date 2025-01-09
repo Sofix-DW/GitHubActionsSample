@@ -20,7 +20,7 @@ public class RoundManager(List<PlayerInfo> players)
         foreach (var player in _players)
         {
             player.RollDice();
-            Console.WriteLine($"{player.Name} roll results: {player.Score}");
+            Console.WriteLine($"\n{player.Name} roll results: {player.Score}");
         }
 
         // Round winners are determined
@@ -45,11 +45,11 @@ public class RoundManager(List<PlayerInfo> players)
         if (roundWinners.Count == 1)
         {
             roundWinners[0].AddScore();
-            Console.WriteLine($"{roundWinners[0].Name} won round {roundNumber}!");
+            Console.WriteLine($"\n{roundWinners[0].Name} won round {roundNumber}!");
         }
         else
         {
-            Console.WriteLine($"Round {roundNumber} is a draw.");
+            Console.WriteLine($"\nRound {roundNumber} is a draw.");
         }
     }
 }

@@ -14,7 +14,7 @@ public class PlayerFactory
     /// <returns>Player information</returns>
     public static PlayerInfo CreatePlayer(int number)
     {
-        Console.Write($"Please enter the name of the Player{number}: ");
+        Console.Write($"\nPlease enter the name of the Player{number}: ");
         var name = Console.ReadLine();
         return new PlayerInfo(name ?? "Unknown");
     }

@@ -17,7 +17,7 @@ Console.Write("\nPlease enter the number of rounds: ");
 int totalRounds;
 while (!int.TryParse(Console.ReadLine(), out totalRounds) || totalRounds <= 0)
 {
-    Console.WriteLine("Enter the number of valid rounds (integer greater than or equal to 1):");
+    Console.WriteLine("\nEnter the number of valid rounds (integer greater than or equal to 1):");
 }
 
 Console.WriteLine("\nThe game is now set up.");
@@ -46,7 +46,7 @@ Console.WriteLine("\n=== Final Results ===");
 var ranking = players.OrderByDescending(p => p.TotalScore).ToList();
 for (var rank = 0; rank < ranking.Count; rank++)
 {
-    Console.WriteLine($"{rank + 1} place: {ranking[rank].Name} (Score: {ranking[rank].TotalScore})");
+    Console.WriteLine($"\n{rank + 1} place: {ranking[rank].Name} (Score: {ranking[rank].TotalScore})");
 }
 
 // Show winners
