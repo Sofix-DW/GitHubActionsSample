@@ -157,7 +157,7 @@ jobs:
       - name: Check if Tag is Stable
         id: check_stable
         run: |
-          console.log(`Previous Tag: ${env.tag_name}`);
+          echo "Previous Tag: ${{ env.tag_name }}"
           if [[ "${{ env.tag_name }}" =~ ^v[0-9]+(\.[0-9]+){0,2}$ ]]; then
             echo "is_stable=true" >> $GITHUB_ENV
           else
