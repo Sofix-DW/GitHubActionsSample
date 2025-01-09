@@ -200,15 +200,16 @@ jobs:
                   previous_tag_name: previousTag
                 })
               : { body: "Initial release." };
-          
-            console.log('Generated release notes:', releaseNotes.body);
+         
+            console.log('Generated release notes response:', releaseNotes);
+            console.log('Release notes body:', releaseNotes.body);
 
             const release = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: latestTag,
               name: `Release ${latestTag}`,
-              body: releaseNotes.body,
+              body: releaseNotes.data.body,
               draft: false,
               prerelease: false
             });
