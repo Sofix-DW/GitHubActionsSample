@@ -171,7 +171,7 @@ jobs:
         run: |
           git fetch --tags
           
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=2) | tail -n 1)
+          PREVIOUS_TAG=$(git tag --list 'v*' | grep -Ev 'beta|alpha|rc' | sort -V | tail -n 1)
           
           if [ -z "$PREVIOUS_TAG" ]; then
             echo "No previous tag found. This will be the first release."
