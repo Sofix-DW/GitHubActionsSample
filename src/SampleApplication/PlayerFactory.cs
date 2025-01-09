@@ -10,8 +10,8 @@ public class PlayerFactory
     /// <summary>
     /// Create Player
     /// </summary>
-    /// <param name="number"></param>
-    /// <returns></returns>
+    /// <param name="number">Player number</param>
+    /// <returns>Player information</returns>
     public static PlayerInfo CreatePlayer(int number)
     {
         Console.Write($"Please enter the name of the Player{number}: ");
@@ -23,7 +23,7 @@ public class PlayerFactory
     /// Create a player list
     /// </summary>
     /// <param name="count">Number of players to create</param>
-    /// <returns></returns>
+    /// <returns>Join players</returns>
     public static List<PlayerInfo> CreatePlayers(int count)
     {
         List<PlayerInfo> players = [];

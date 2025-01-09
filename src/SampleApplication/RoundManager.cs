@@ -5,9 +5,6 @@ namespace SampleApplication;
 /// <summary>
 /// Class to manage rounds
 /// </summary>
-/// <remarks>
-/// Constructor
-/// </remarks>
 /// <param name="players">Join player list</param>
 public class RoundManager(List<PlayerInfo> players)
 {
@@ -16,7 +13,7 @@ public class RoundManager(List<PlayerInfo> players)
     /// <summary>
     /// Play a round
     /// </summary>
-    /// <param name="roundNumber"></param>
+    /// <param name="roundNumber">Round number</param>
     public void PlayRound(int roundNumber)
     {
         // All players roll dice
