@@ -2,6 +2,10 @@
 using SampleApplication;
 
 Console.WriteLine("=== Dice Battle Games ===");
+Console.WriteLine("=== 3 ===");
+Console.WriteLine("=== 2 ===");
+Console.WriteLine("=== 1 ===");
+Console.WriteLine("=== Start!! ===");
 
 Console.Write("Please enter the number of players: ");
 int playerCount;
