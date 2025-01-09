@@ -1,7 +1,7 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.Microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectVersion>1.0.19.0</ProjectVersion>
-    <NugetPackageVersion>1.0.19-beta.1</NugetPackageVersion>
+    <NugetPackageVersion>1.0.19-rc.2</NugetPackageVersion>
     <CopyrightValue>Copyright (c) S Fujii 2024</CopyrightValue>
   </PropertyGroup>
 </Project>
