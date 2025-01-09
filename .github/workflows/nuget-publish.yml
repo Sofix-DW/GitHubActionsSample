@@ -116,6 +116,21 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: build-output
+      - name: Get Previous Tag
+        if: env.is_stable == 'true'
+        id: get_previous_tag
+        run: |
+          git fetch --tags
+          
+          PREVIOUS_TAG=$(git tag --list 'v*' | grep -Ev 'beta|alpha|rc' | sort -V | tail -n 1)
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            echo "No previous tag found. This will be the first release."
+            echo "PREVIOUS_TAG=" >> $GITHUB_ENV
+          else
+            echo "Previous tag found: $PREVIOUS_TAG"
+            echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_ENV
+          fi
       - name: Create and Push Tag
         run: |
           VERSION=$(sed -n 's|.*<NugetPackageVersion>\(.*\)</NugetPackageVersion>.*|\1|p' ${{ env.VERSION_FILE }})
@@ -163,22 +178,6 @@ jobs:
             echo "is_stable=true" >> $GITHUB_ENV
           else
             echo "is_stable=false" >> $GITHUB_ENV
-          fi
-
-      - name: Get Previous Tag
-        if: env.is_stable == 'true'
-        id: get_previous_tag
-        run: |
-          git fetch --tags
-          
-          PREVIOUS_TAG=$(git tag --list 'v*' | grep -Ev 'beta|alpha|rc' | sort -V | tail -n 1)
-          
-          if [ -z "$PREVIOUS_TAG" ]; then
-            echo "No previous tag found. This will be the first release."
-            echo "PREVIOUS_TAG=" >> $GITHUB_ENV
-          else
-            echo "Previous tag found: $PREVIOUS_TAG"
-            echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_ENV
           fi
 
       - name: Generate Release Notes and Create Release
