@@ -4,7 +4,7 @@ namespace SampleApplication.Test
 {
     public class PlayerInfoTest
     {
-        [Fact(DisplayName = "名前が正しく反映されているか")]
+        [Fact(DisplayName = "Testing to see if names are reflected correctly")]
         public void ConstructorTest()
         {
             var playerName = "Test Player";
@@ -16,7 +16,7 @@ namespace SampleApplication.Test
             Assert.Equal(playerName, player.Name);
         }
 
-        [Fact(DisplayName = "ダイスロール範囲内")]
+        [Fact(DisplayName = "Test for die roll range")]
         public void RollDice_ShouldGenerateNumberBetween1And6()
         {
             // Arrange
@@ -29,7 +29,7 @@ namespace SampleApplication.Test
             Assert.InRange(player.Score, 1, 6);
         }
 
-        [Fact(DisplayName = "得点の加算が正しいか")]
+        [Fact(DisplayName = "Test for correct addition of scores")]
         public void AddScore_ShouldIncreaseTotalScore()
         {
             // Arrange

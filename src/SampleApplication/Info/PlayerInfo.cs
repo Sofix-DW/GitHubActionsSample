@@ -25,7 +25,7 @@ public class PlayerInfo(string name)
     /// </summary>
     public void RollDice()
     {
-        Score = _random.Next(1, 7); // 1から6の値を生成
+        Score = _random.Next(1, 7); // Generate values from 1 to 6
     }
 
     /// <summary>
