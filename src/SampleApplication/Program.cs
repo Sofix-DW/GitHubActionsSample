@@ -3,7 +3,7 @@ using SampleApplication;
 
 Console.WriteLine("=== Dice Battle Games ===");
 
-Console.Write("Please enter the number of players: ");
+Console.Write("\nPlease enter the number of players: ");
 int playerCount;
 while (!int.TryParse(Console.ReadLine(), out playerCount) || playerCount <= 1)
 {
@@ -20,7 +20,14 @@ while (!int.TryParse(Console.ReadLine(), out totalRounds) || totalRounds <= 0)
     Console.WriteLine("Enter the number of valid rounds (integer greater than or equal to 1):");
 }
 
-Console.WriteLine("\nStart the game!");
+Console.WriteLine("\nThe game is now set up.");
+Console.WriteLine("\nNow let's start the game.");
+
+Console.WriteLine("\n=== 3 ===");
+Console.WriteLine("\n=== 2 ===");
+Console.WriteLine("\n=== 1 ===");
+Console.WriteLine("\n=== Redy... ===");
+Console.WriteLine("\n=== Start!! ===");
 
 // Create round management class
 var roundManager = new RoundManager(players);
