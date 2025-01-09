@@ -201,6 +201,8 @@ jobs:
                 })
               : { body: "Initial release." };
           
+            console.log('Generated release notes:', releaseNotes.body);
+
             const release = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
