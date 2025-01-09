@@ -164,7 +164,9 @@ jobs:
           else
             echo "is_stable=false" >> $GITHUB_ENV
           fi
+
       - name: Get Previous Tag
+        if: env.is_stable == 'true'
         id: get_previous_tag
         run: |
           git fetch --tags
