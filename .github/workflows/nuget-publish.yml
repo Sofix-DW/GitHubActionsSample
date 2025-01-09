@@ -153,6 +153,17 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          
+      - name: Check if Tag is Stable
+        id: check_stable
+        run: |
+          console.log(`Latest Tag: ${env.tag}`);
+          console.log(`Previous Tag: ${env.tag_name}`);
+          if [[ "${{ env.tag }}" =~ ^v[0-9]+(\.[0-9]+){0,2}$ ]]; then
+            echo "is_stable=true" >> $GITHUB_ENV
+          else
+            echo "is_stable=false" >> $GITHUB_ENV
+          fi
 
       - name: Get Previous Tag
         id: get_previous_tag
@@ -167,17 +178,6 @@ jobs:
           else
             echo "Previous tag found: $PREVIOUS_TAG"
             echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_ENV
-          fi
-
-      - name: Check if Tag is Stable
-        id: check_stable
-        run: |
-          if [[ "${{ env.tag_name }}" =~ ^v[0-9]+(\.[0-9]+){0,2}$ ]]; then
-            echo "is_stable=true" >> $GITHUB_ENV
-            echo "Detected stable tag: ${{ env.previous_tag }}"
-          else
-            echo "is_stable=false" >> $GITHUB_ENV
-            echo "Detected pre-release tag: ${{ env.previous_tag }}"
           fi
 
       - name: Generate Release Notes and Create Release
