@@ -14,8 +14,8 @@ public class PlayerFactory
     /// <returns></returns>
     public static PlayerInfo CreatePlayer(int number)
     {
-        Console.Write($"プレイヤー{number}の名前を入力してください: ");
-        string? name = Console.ReadLine();
+        Console.Write($"Please enter the name of the Player{number}: ");
+        var name = Console.ReadLine();
         return new PlayerInfo(name ?? "Unknown");
     }
 
@@ -28,7 +28,7 @@ public class PlayerFactory
     {
         List<PlayerInfo> players = [];
 
-        for (int i = 1; i <= count; i++)
+        for (var i = 1; i <= count; i++)
         {
             players.Add(CreatePlayer(i));
         }

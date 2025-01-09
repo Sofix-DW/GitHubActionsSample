@@ -19,18 +19,18 @@ public class RoundManager(List<PlayerInfo> players)
     /// <param name="roundNumber"></param>
     public void PlayRound(int roundNumber)
     {
-        // 全プレイヤーがダイスを振る
-        foreach (PlayerInfo player in _players)
+        // All players roll dice
+        foreach (var player in _players)
         {
             player.RollDice();
-            Console.WriteLine($"{player.Name}のロール: {player.Score}");
+            Console.WriteLine($"{player.Name} roll results: {player.Score}");
         }
 
-        // ラウンド勝者を決定
-        int maxScore = -1;
-        List<PlayerInfo> roundWinners = new List<PlayerInfo>();
+        // Round winners are determined
+        var maxScore = -1;
+        List<PlayerInfo> roundWinners = [];
 
-        foreach (PlayerInfo player in _players)
+        foreach (var player in _players)
         {
             if (player.Score > maxScore)
             {
@@ -44,15 +44,15 @@ public class RoundManager(List<PlayerInfo> players)
             }
         }
 
-        // 勝者の処理
+        // Dealing with winners
         if (roundWinners.Count == 1)
         {
             roundWinners[0].AddScore();
-            Console.WriteLine($"{roundWinners[0].Name}がラウンド {roundNumber} に勝利しました！");
+            Console.WriteLine($"{roundWinners[0].Name} won round {roundNumber}!");
         }
         else
         {
-            Console.WriteLine($"ラウンド {roundNumber} は引き分けです！");
+            Console.WriteLine($"Round {roundNumber} is a draw.");
         }
     }
 }

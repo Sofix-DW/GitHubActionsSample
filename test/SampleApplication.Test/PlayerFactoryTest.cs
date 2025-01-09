@@ -19,10 +19,10 @@ namespace SampleApplication.Test
             var players = PlayerFactory.CreatePlayers(3);
 
             // Assert
-            Assert.Equal(3, players.Count); // プレイヤー数が正しいか
-            Assert.Equal(name1, players[0].Name); // プレイヤー1の名前を確認
-            Assert.Equal(name2, players[1].Name); // プレイヤー2の名前を確認
-            Assert.Equal(name3, players[2].Name); // プレイヤー3の名前を確認
+            Assert.Equal(3, players.Count); // Check if the number of players is correct
+            Assert.Equal(name1, players[0].Name); // Check the name of Player 1
+            Assert.Equal(name2, players[1].Name); // Check the name of Player 2
+            Assert.Equal(name3, players[2].Name); // Check the name of Player 3
         }
     }
 }
